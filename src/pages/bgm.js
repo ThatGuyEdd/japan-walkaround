@@ -27,7 +27,7 @@ export const BGM = React.memo(() => {
             </button>
         </div>
         <div className="music">
-            <iframe id="bgm"
+            <iframe id="bgm" title="bgmiframe"
                 allow="autoplay" 
                 src={
                     `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${randPlaylist}${trackParams}`

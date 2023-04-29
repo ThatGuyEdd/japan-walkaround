@@ -33,13 +33,16 @@ export const YouTubeEmbed = ({ videoList }) => {
     
     let isMute = false;
     const toggleMute = () => {
-        if(!isMute && player) {
+        if (player)
+        {
+            if(!isMute) {
             isMute = true;
             player.target.mute();
-        } else if (player) {
-            isMute = false;
-            player.target.unMute();
-        } 
+            } else {
+                isMute = false;
+                player.target.unMute();
+            } 
+        }
     }
   
     return (

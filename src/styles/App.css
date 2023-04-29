@@ -52,12 +52,11 @@
   right: 0%;
   width: 250px;
   margin: 0;
-  min-height: 25vh;
+  min-height: 15vh;
   background-color: rgba(255,255,255,0.5);
   border-radius: 10px;
   padding: 20px;
   border: 1px solid black;
-  overflow: hidden;
   font-family: Arial, monospace;
   filter: drop-shadow(2px 4px 6px black);
 }
@@ -82,14 +81,8 @@
   transition: all 0.2s;
 }
 
-.title {
-  z-index: 2;
-  -webkit-text-stroke: 0.75px white;
-}
-
-.title h1, .title h2, .title h3 {
-  margin: 0;
-  text-align: center;
+.citySelector {
+  width: 65%;
 }
 
 .menuWrapper {

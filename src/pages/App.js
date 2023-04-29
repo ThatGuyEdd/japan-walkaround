@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import soundcloud from '../api/soundcloud';
 
 //import "@cloudscape-design/global-styles";
@@ -63,9 +63,8 @@ const Popup = props => {
 };
 
 const Menu = ({ setCity, cityName }) => {
-  let city = "";
-  const updateCity = useRef();
-  
+  const [localCity, setLocalCity] = useState({ label: "Tokyo", value: "Tokyo" });  
+
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -75,22 +74,6 @@ const Menu = ({ setCity, cityName }) => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   }
-
-  const [change, setChange] = useState(false);
-  useEffect(() => {
-    if (change === false) {
-      return;
-    }
-    if(updateCity.current != undefined) {
-      updateCity.current.animate(
-        {
-          opacity: [0, 1]
-        },
-        500
-      );
-    }
-  });
-
 
   return (
     <div className={ "menuWrapper" }>
@@ -105,15 +88,14 @@ const Menu = ({ setCity, cityName }) => {
             <div className={ "menu" }>
               <label><b>Choose City</b></label>
               <Select
-                selectedOption={city}
+                className="citySelector"
+                selectedOption={localCity}
                 placeholder="Select City"
                 onChange={(e) => {
-                  setChange(true);
-                  city = e.detail.selectedOption.value;
+                  setLocalCity(e.detail.selectedOption);
                   setCity(e.detail.selectedOption.value);
                 }}
                 options={[
-                  { label: "Select City", value: "null" },
                   { label: "Tokyo", value: "Tokyo" },
                   { label: "Osaka", value: "Osaka" },
                   { label: "Kyoto", value: "Kyoto" },
@@ -122,17 +104,9 @@ const Menu = ({ setCity, cityName }) => {
                   { label: "Fukushima", value: "Fukushima" },
                   { label: "Hiroshima", value: "Hiroshima" },
                 ]}
-                expandToViewport
-                virtualScroll
                 selectedAriaLabel="Selected"
               />
-            </div>
-            <div className={ "title" }>
-              <span>
-              <h2>Current City</h2>
-              <h1 ref={updateCity}>{cityName}</h1> 
-              </span>
-            </div >          
+            </div>       
           </>
         }
         handleClose={toggleMenu}  
