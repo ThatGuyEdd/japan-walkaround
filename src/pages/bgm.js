@@ -25,10 +25,9 @@ export const BGM = React.memo(() => {
         function() {
             vol = document.getElementById("volume");
             let update = () => { 
-                volume = vol.value; console.log("volume: ", vol.value);
+                volume = vol.value;
                 soundcloud().setVolume(volume);
             }
-            console.log("typeof: ", vol); 
             vol.addEventListener('input', update);
             if(vol) {
                 update();
