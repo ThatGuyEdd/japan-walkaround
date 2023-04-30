@@ -4,6 +4,9 @@ import { BiShuffle } from "react-icons/bi";
 import soundcloud from "../api/soundcloud";
 
 export const BGM = React.memo(() => {    
+    let vol;
+    let volume;
+
     const playlist = ["263367934","300494469","483718232","545610837","783832791",
                       "655383102","305665701","799182711","1234281943","356635769"];
     let randPlaylist = playlist[Math.floor(Math.random() * playlist.length)];
@@ -14,12 +17,12 @@ export const BGM = React.memo(() => {
     const[shuffle, setShuffle] = useState(randPlaylist);
     
     const shufflePlaylist = () => {
+        vol = document.getElementById("volume");
+        soundcloud().setVolume(vol.value);
         setShuffle(playlist[Math.floor(Math.random() * playlist.length)]);
         randPlaylist = shuffle;
     };
 
-    let vol;
-    let volume;
     setTimeout
     (
         function() {
