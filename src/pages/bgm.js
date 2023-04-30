@@ -12,7 +12,7 @@ export const BGM = React.memo(() => {
     let randPlaylist = playlist[Math.floor(Math.random() * playlist.length)];
     
     const trackParams = 
-        "&color=%23000000&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true";
+        "&color=%23000000&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true";
     
     const[shuffle, setShuffle] = useState(randPlaylist);
     
