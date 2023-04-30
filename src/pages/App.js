@@ -31,8 +31,7 @@ function App() {
   cityVideos.set('Fukushima'  ,   fukushimaVideos);
   cityVideos.set('Hiroshima'  ,   hiroshimaVideos);
 
-  const playMusic = () => { soundcloud() };
-  setTimeout(function() { playMusic() }, 500);
+  setTimeout(function() { soundcloud() }, 500);
 
   return (
     <>
@@ -77,7 +76,7 @@ const Popup = props => {
   );
 };
 
-const Menu = ({ setCity, cityName }) => {
+const Menu = ({ setCity }) => {
   const [localCity, setLocalCity] = useState({ label: "Tokyo", value: "Tokyo" });  
 
   const [isOpen, setIsOpen] = useState(false);
