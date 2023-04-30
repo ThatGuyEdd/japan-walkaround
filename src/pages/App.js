@@ -79,7 +79,7 @@ const Popup = props => {
 const Menu = ({ setCity }) => {
   const [localCity, setLocalCity] = useState({ label: "Tokyo", value: "Tokyo" });  
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
@@ -131,6 +131,7 @@ const Menu = ({ setCity }) => {
       ><FaQuestion/></button>
       {isOpen && <Popup
         content={<>
+          <h3 className={ "helpBoxTitle" }>Japan Walkaround</h3>
           <b>How to Use</b>
           <IconContext.Provider
             value={{style: { verticalAlign: 'middle'}}}
