@@ -382,7 +382,7 @@
 
 /* ----- Mobile Stylings ----- */
 
-@media screen and (min-width: 340px) {
+@media screen and ((max-width: 1224px)) {
   .popupBox {
     top: 10%;
   }
@@ -399,7 +399,7 @@
     z-index: 5;
     position: fixed;
     top: 60px;
-    right: -2.5%;
+    right: -1%;
     width: 200px;
     margin: 0;
     height: 100px;
@@ -415,18 +415,18 @@
   .music {
     scale: 0.8;
     z-index: 5;
-    height: 125px;
-    width: 245px;
-    position: absolute;
     top: -1%;
-    left: -6%;
+    left: -2%;
+    height: 125px;
+    width: 230px;
+    position: absolute;
     border: none;
     transition: all 0.2s;
   }
 
   .music iframe {
     height: 125px;
-    width: 245px;
+    width: 230px;
     filter: opacity(0.1);
     transition: all 0.2s;
   }
@@ -435,5 +435,13 @@
     height: 450px;
     width: 450px;
     filter: opacity(1) drop-shadow(2px 4px 6px black);
+  }
+}
+
+@media screen and ((max-width: 1224px) and (orientation: landscape)) {
+  .popupBox {
+    top: 10%;
+    overflow: auto;
+    height: 300px;
   }
 }
