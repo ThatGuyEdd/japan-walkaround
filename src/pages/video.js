@@ -1,8 +1,8 @@
 import '../styles/App.css';
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 
-import { FaVolumeUp, FaVolumeMute, FaYoutube } from "react-icons/fa";
+import { FaVolumeUp, FaVolumeMute, FaYoutube } from 'react-icons/fa';
 
 let init = true;
 let player;
@@ -44,6 +44,15 @@ export const YouTubeEmbed = ({ videoList }) => {
         player = event;
         currVideo = player.target.getVideoUrl();
         init = false;
+    }
+
+    const onStateChange = (event) => {
+        if (event.data === -1) {
+            void event.target.setVolume(10);
+            void event.target.playVideo();
+            player = event;
+            currVideo = player.target.getVideoUrl();
+        }
     }
   
     const onEnd = (event) => {
@@ -87,6 +96,7 @@ export const YouTubeEmbed = ({ videoList }) => {
                 videoId={ currVideo } 
                 opts={ init ? initOpts : opts } 
                 onReady={ onPlayerReady }
+                onStateChange={ onStateChange }
                 onEnd={ onEnd }
                 />
                 </div>
