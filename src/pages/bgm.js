@@ -1,5 +1,6 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import soundcloud from '../api/soundcloud';
 
 import { BiShuffle } from 'react-icons/bi';
@@ -10,7 +11,7 @@ export const BGM = React.memo(() => {
     const playlist = ["263367934","300494469","483718232","545610837","783832791",
                       "655383102","305665701","799182711","1234281943","356635769"];
     const trackParams = 
-        "&color=%23000000&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true";
+        "&color=%23000000&auto_play=false&show_comments=false&show_user=false&visual=false&sharing=false&show_teaser=false";
     let randPlaylist = playlist[Math.floor(Math.random() * playlist.length)];
 
     const[shuffle, setShuffle] = useState(randPlaylist);
@@ -43,7 +44,9 @@ export const BGM = React.memo(() => {
         <button className={ "shuffleButton" } onClick={ shufflePlaylist }>
             <BiShuffle className={ "shuffleIcon" }/>
         </button>
-        <input className={ "volSlider" } id="volume" type="range" min="0" max="100" step="1"></input>
+        <div style={{ display: isMobile ? 'none' : '' }}>
+            <input className={ "volSlider" } id="volume" type="range" min="0" max="100" step="1"></input>
+        </div>
         <div className={ "music" }>
             <iframe id="bgm" title="soundcloud"
                 allow="autoplay" 

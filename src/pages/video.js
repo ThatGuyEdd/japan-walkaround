@@ -1,15 +1,16 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import YouTube from 'react-youtube';
 
 import { FaVolumeUp, FaVolumeMute, FaYoutube } from 'react-icons/fa';
 
-let vidSound;
+let vidMute;
 let player;
 
 const MuteButton = () => {
     const[isMute, setIsMute] = useState(true);
-    vidSound = isMute;
+    vidMute = isMute;
 
     const toggleMute = () => {
         if (player)
@@ -45,7 +46,7 @@ export const YouTubeEmbed = ({ videoList }) => {
             disablekb: 1,
             modestbranding: 1,
             rel: 0,
-            mute: vidSound,
+            mute: isMobile ? 1 : vidMute,
         }
     }
 

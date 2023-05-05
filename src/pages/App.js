@@ -1,11 +1,13 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import soundcloud from '../api/soundcloud';
 import { YouTubeEmbed } from './video';
 import { BGM } from './bgm';
 
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 import { FaAlignJustify, FaQuestion, FaVolumeMute, 
          FaYoutube, FaCoffee} from 'react-icons/fa';
 import { BiShuffle } from 'react-icons/bi';
@@ -78,7 +80,7 @@ const PopupHelp = props => {
 const PopupMenu = props => {
   return (
     <div className={ "menuWrapper" }>
-      <div className={ "boxMenu" }>
+      <div className={ "boxMenu" } style={{ top: isMobile ? '40px' : '' }}>
         <span className={ "closeMenuIcon" } onClick={ props.handleClose }>
           <IconContext.Provider
             value={{style: { verticalAlign: 'middle', scale: '0.75'}}}>
@@ -161,6 +163,9 @@ const Menu = ({ setCity }) => {
                     soundcloud().play();
                     init = false;
                   }
+                  if (isMobile && !init) {
+                    soundcloud().pause();
+                  }
                   setLocalCity(e.target.value);
                   setCity(e.target.value);
                 }}
@@ -194,17 +199,31 @@ const Menu = ({ setCity }) => {
             <h3 className={ "helpBoxTitle" }>Japan Walkaround 🗾 日本に歩き回る</h3>
             <ul>
               <i>Lofi music with videos of Japan.</i>
-              <br></br>
-              <sub>This site was designed for desktop. Mobile compatability may vary.</sub>
+              <Typography
+              variant='subtitle2' 
+              sx={{ display: 'none',...(isMobile && { display: 'flex' }), 
+                    paddingTop: '10px', 
+                    fontWeight: 'bold'}}>
+                Mobile Browsers:
+                Upon changing cities, video audio will mute and music will pause.
+              </Typography>
             </ul>
             <b>How to Use</b>
             <IconContext.Provider
               value={{style: { verticalAlign: 'middle'}}}>
               <ul><b>Controls</b> are on the upper right of the screen.</ul>
+              <Typography sx={{ display: 'inline',...(isMobile && { display: 'none' })}}>
               <ul>
                   Hover over the <b>music player</b> on the upper left to play/pause and view the current playlist.
                   Use the <b>slider</b> below the controls to change the music volume.
               </ul>
+              </Typography>
+              <Typography sx={{ display: 'inline',...(!isMobile && { display: 'none' })}}>
+              <ul>
+                  Tap the <b>music player</b> on the upper left to expand the music player window, 
+                  play/pause the current song, and view the playlist.
+              </ul>
+              </Typography>
               <ul>
                 <FaQuestion/> <b>- Opens How to Use Menu</b>
               </ul>
